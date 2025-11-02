@@ -1,11 +1,24 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 
-// Hardcoded Supabase credentials
-const SUPABASE_URL = 'https://sjlqsltcrwslveaxldvh.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqbHFzbHRjcndzbHZlYXhsZHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgxMjAxNjYsImV4cCI6MjA3MzY5NjE2Nn0.yNYXbN2FEr18ckdi_MRosIKt_eVPrbmZWvzgcouqnnQ';
+// Force dynamic rendering - this route should not be statically generated
+export const dynamic = 'force-dynamic'
+
+// Use environment variables instead of hardcoded credentials
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
 export async function GET() {
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    return NextResponse.json(
+      { 
+        success: false,
+        error: 'Configuration error',
+        message: 'Missing Supabase environment variables'
+      },
+      { status: 500 }
+    );
+  }
   try {
     console.log('Creating Supabase client...');
     
