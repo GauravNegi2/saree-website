@@ -7,9 +7,9 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 export async function createClient() {
   if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error(
-      'Missing Supabase environment variables. Please check your .env.local file.'
-    )
+    const error = 'Missing Supabase environment variables. Please check your .env.local file or Vercel environment variables.'
+    console.error(error)
+    throw new Error(error)
   }
 
   const cookieStore = cookies()
