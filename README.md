@@ -182,3 +182,5 @@ For support, email support@yourstore.com or contact via WhatsApp.
 
 Built with ❤️ for elegant sarees
 
+<!-- Updated: Fixed duplicate import issue -->
+
