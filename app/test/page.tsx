@@ -11,9 +11,9 @@ export default function TestPage() {
   const [selectedTable, setSelectedTable] = useState('products');
   const [useRls, setUseRls] = useState(true);
 
-  // Supabase configuration
-  const supabaseUrl = 'https://sjlqsltcrwslveaxldvh.supabase.co';
-  const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqbHFzbHRjcndzbHZlYXhsZHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgxMjAxNjYsImV4cCI6MjA3MzY5NjE2Nn0.yNYXbN2FEr18ckdi_MRosIKt_eVPrbmZWvzgcouqnnQ';
+  // Supabase configuration - use environment variables
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
   // Initialize Supabase client with RLS bypassed by default
   const createSupabaseClient = (bypassRls = true) => {
