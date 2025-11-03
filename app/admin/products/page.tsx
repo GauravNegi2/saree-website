@@ -439,7 +439,7 @@ export default function ProductsPage() {
                     <TableCell>₹{product.price?.toLocaleString() || 0}</TableCell>
                     <TableCell>{product.stock_quantity}</TableCell>
                   <TableCell>{getStatusBadge(Boolean(product.active), product.stock_quantity)}</TableCell>
-                    <TableCell>
+                    <TableCell className="flex items-center justify-end gap-1">
                       <DropdownMenu modal={false}>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" className="h-8 w-8 p-0" onClick={(e) => e.stopPropagation()}>
@@ -461,6 +461,13 @@ export default function ProductsPage() {
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
+                      {/* Direct action buttons as a fallback if dropdown fails */}
+                      <Button variant="ghost" size="icon" className="h-8 w-8" onClick={(e) => { e.stopPropagation(); openEditDialog(product) }}>
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600" onClick={(e) => { e.stopPropagation(); handleDeleteProduct(product.id) }}>
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
