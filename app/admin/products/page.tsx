@@ -440,9 +440,9 @@ export default function ProductsPage() {
                     <TableCell>{product.stock_quantity}</TableCell>
                   <TableCell>{getStatusBadge(Boolean(product.active), product.stock_quantity)}</TableCell>
                     <TableCell>
-                      <DropdownMenu>
+                      <DropdownMenu modal={false}>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
+                          <Button variant="ghost" className="h-8 w-8 p-0" onClick={(e) => e.stopPropagation()}>
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
