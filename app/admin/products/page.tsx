@@ -416,9 +416,9 @@ export default function ProductsPage() {
                     <TableCell>
                       <div className="flex items-center space-x-3">
                         <div className="relative w-10 h-10 rounded-md overflow-hidden bg-muted">
-                          {product.image_url ? (
+                          {product.images && product.images[0] ? (
                             <Image
-                              src={product.image_url || "/placeholder.svg"}
+                              src={product.images[0] || "/placeholder.svg"}
                               alt={product.name}
                               fill
                               className="object-cover"
@@ -525,14 +525,7 @@ export default function ProductsPage() {
                   />
                 </div>
               </div>
-              <div>
-                <Label htmlFor="edit-sku">SKU</Label>
-                <Input
-                  id="edit-sku"
-                  value={formData.sku}
-                  onChange={(e) => setFormData({ ...formData, sku: e.target.value })}
-                />
-              </div>
+              {/* SKU is not part of the current schema/UI; omit for now */}
             </div>
             <div className="space-y-4">
               <div>
@@ -555,18 +548,7 @@ export default function ProductsPage() {
                   )}
                 </div>
               </div>
-              <div>
-                <Label htmlFor="edit-status">Status</Label>
-                <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              {/* Status handled by the Active checkbox; no separate status field */}
             </div>
           </div>
           <div className="flex justify-end space-x-2 pt-4">
